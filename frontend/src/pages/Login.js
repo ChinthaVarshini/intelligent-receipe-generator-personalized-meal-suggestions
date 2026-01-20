@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setUserProfile } from '../features/userSlice';
 import './Login.css';
@@ -18,8 +18,8 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // Base API URL (can be overridden with REACT_APP_API_URL in .env)
-  const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  // Use relative paths since frontend is served from the same server
+  const API_BASE = '';
 
   const handleInputChange = (e) => {
     setFormData({

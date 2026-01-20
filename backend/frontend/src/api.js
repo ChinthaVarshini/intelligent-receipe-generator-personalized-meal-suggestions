@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = '';
 const API_KEY = 'intelligent-recipe-generator-api-key-2023';
 
 export const uploadImage = async (file) => {

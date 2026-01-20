@@ -10,6 +10,13 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, profile } = useSelector(state => state.user);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    dispatch(logout());
+    navigate('/');
+  };
+
   useEffect(() => {
     // Check authentication status on component mount
     const token = localStorage.getItem('token');
@@ -24,14 +31,9 @@ const Navbar = () => {
         handleLogout();
       }
     }
-  }, [dispatch]);
+  }, [dispatch, handleLogout]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    dispatch(logout());
-    navigate('/');
-  };
+
 
   return (
     <nav className="navbar">

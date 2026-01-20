@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { setUserProfile, updatePreferences, addToFavorites, removeFromFavorites, addToHistory, clearHistory } from '../features/userSlice';
+import { setUserProfile, updatePreferences, removeFromFavorites } from '../features/userSlice';
 import './Profile.css';
 
 const Profile = () => {
@@ -11,7 +11,7 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState(searchParams.get('favorites') ? 'favorites' : 'preferences');
   const [favorites, setFavorites] = useState([]);
   const [cookingHistory, setCookingHistory] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {

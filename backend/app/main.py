@@ -229,20 +229,24 @@ def process_image_route():
 
     # Extract ingredients list
     ingredients_list = prediction.get("ingredients", [])
-    ingredients_names = [ing.get("name", "Unknown") for ing in ingredients_list]
+    ingredients_names = [ing.get("name", "Unknown") for ing in ingredients_list if ing.get("name", "Unknown") != "Unknown"]
 
-    # If OCR is gibberish but we have image classification results, prioritize those
-    if ocr_is_gibberish and ingredients_names == ["Unknown"]:
+    # If no ingredients found, try image classification as fallback
+    if not ingredients_names:
         # Look for image classification results in the prediction
         image_classifications = prediction.get("image_classifications", [])
         if image_classifications:
-            print(f"Prioritizing image classification over gibberish OCR: {image_classifications}")
+            print(f"No OCR ingredients found, using image classification: {image_classifications}")
             # Convert image classifications to ingredient format
             ingredients_list = [{"name": cls["name"], "confidence": cls["confidence"]}
-                              for cls in image_classifications[:3]]  # Top 3
+                              for cls in image_classifications[:5] if cls.get("name")]  # Top 5
             ingredients_names = [ing["name"] for ing in ingredients_list]
 
+    # Filter out "Unknown" entries
+    ingredients_names = [ing for ing in ingredients_names if ing and ing.lower() != "unknown"]
+    
     print(f"Detected ingredients: {ingredients_names}")
+    print(f"OCR Text: {text[:100]}")
 
     # Generate beautiful recipe from detected ingredients
     generated_recipes = []

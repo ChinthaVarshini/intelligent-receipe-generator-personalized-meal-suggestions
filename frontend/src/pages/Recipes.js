@@ -38,7 +38,7 @@ const Recipes = () => {
 
   useEffect(() => {
     console.log('Recipes component mounted');
-    console.log('Current state:', { generatedRecipe: !!generatedRecipe, suggestions: !!suggestions, recipesLength: recipes.length, loading, error });
+    console.log('Current state:', { generatedRecipe: !!generatedRecipe, suggestions: !!suggestions, recipesLength: recipes.length });
 
     // Fetch existing recipes if no generated content
     if (!generatedRecipe && !suggestions && recipes.length === 0) {
@@ -54,7 +54,7 @@ const Recipes = () => {
         console.log('fetchRecipes error:', error);
       });
     }
-  }, [dispatch, generatedRecipe, suggestions, recipes.length]);
+  }, [dispatch, generatedRecipe, suggestions, recipes.length, loading, error]);
 
   // Load favorite status when recipes change or user logs in
   useEffect(() => {
@@ -471,7 +471,8 @@ const Recipes = () => {
         </Link>
       </div>
     </div>
-  );
+    );
+  };
 
   return (
     <div className="recipes-page">

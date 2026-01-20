@@ -238,7 +238,14 @@ const Ingredients = () => {
 
         {!loading && !error && imageProcessed && detectedIngredients.length === 0 && (
           <div className="info-message">
-            <span>📷</span> No ingredients were automatically detected from your image. Please add them manually below.
+            <span>📷</span> 
+            <div>
+              <p>No ingredients were automatically detected from your image.</p>
+              <p style={{fontSize: '0.9em', marginTop: '8px', opacity: 0.8}}>
+                This may happen if the image doesn't contain text or recognizable food items. 
+                <strong> Please add ingredients manually below</strong>, or try uploading a clearer image with visible ingredient lists or food items.
+              </p>
+            </div>
           </div>
         )}
 
