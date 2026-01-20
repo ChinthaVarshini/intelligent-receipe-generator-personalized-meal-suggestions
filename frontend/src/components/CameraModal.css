@@ -1,0 +1,160 @@
+.camera-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.camera-modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.camera-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.camera-modal-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.close-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.camera-container {
+  position: relative;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.camera-feed {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: cover;
+}
+
+.camera-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.camera-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.camera-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.camera-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toggle-camera {
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  font-size: 20px;
+}
+
+.capture-btn {
+  background: #ff4757;
+  color: white;
+  font-size: 28px;
+}
+
+.camera-instructions {
+  padding: 15px 20px;
+  background: #f8f9fa;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+.camera-instructions p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .camera-modal-content {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .camera-modal-header {
+    padding: 15px;
+  }
+
+  .camera-controls {
+    bottom: 15px;
+  }
+
+  .camera-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .capture-btn {
+    font-size: 24px;
+  }
+
+  .camera-instructions {
+    padding: 12px 15px;
+  }
+}
