@@ -64,8 +64,7 @@ const Recipes = () => {
           const token = localStorage.getItem('token');
           const response = await fetch('/auth/favorites', {
             headers: {
-              'Authorization': `Bearer ${token}`,
-              'X-API-Key': 'intelligent-recipe-generator-api-key-2023'
+              'Authorization': `Bearer ${token}`
             }
           });
 
@@ -225,7 +224,6 @@ const Recipes = () => {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
-          'X-API-Key': 'intelligent-recipe-generator-api-key-2023',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(recipeData)
@@ -241,8 +239,7 @@ const Recipes = () => {
             const favoriteResponse = await fetch(`/auth/favorites/${data.recipe.id}`, {
               method: 'POST',
               headers: {
-                'Authorization': `Bearer ${token}`,
-                'X-API-Key': 'intelligent-recipe-generator-api-key-2023'
+                'Authorization': `Bearer ${token}`
               }
             });
 
@@ -289,8 +286,7 @@ const Recipes = () => {
       const response = await fetch(`/auth/favorites/${recipeId}`, {
         method: isFavorited ? 'DELETE' : 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'X-API-Key': 'intelligent-recipe-generator-api-key-2023'
+          'Authorization': `Bearer ${token}`
         }
       });
 

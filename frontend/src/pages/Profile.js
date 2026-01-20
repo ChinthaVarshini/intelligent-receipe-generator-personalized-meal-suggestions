@@ -27,8 +27,7 @@ const Profile = () => {
         try {
           const token = localStorage.getItem('token');
           const headers = {
-            'Authorization': `Bearer ${token}`,
-            'X-API-Key': 'intelligent-recipe-generator-api-key-2023'
+            'Authorization': `Bearer ${token}`
           };
 
           const favoritesResponse = await fetch('/auth/favorites', { headers });
@@ -52,8 +51,7 @@ const Profile = () => {
     try {
       const token = localStorage.getItem('token');
       const headers = {
-        'Authorization': `Bearer ${token}`,
-        'X-API-Key': 'intelligent-recipe-generator-api-key-2023'
+        'Authorization': `Bearer ${token}`
       };
 
       // Fetch profile
@@ -105,8 +103,7 @@ const Profile = () => {
       const response = await fetch(`/auth/favorites/${recipeId}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'X-API-Key': 'intelligent-recipe-generator-api-key-2023'
+          'Authorization': `Bearer ${token}`
         }
       });
 

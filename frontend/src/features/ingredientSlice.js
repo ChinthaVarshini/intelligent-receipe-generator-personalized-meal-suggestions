@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const API_BASE_URL = '';
-const API_KEY = 'intelligent-recipe-generator-api-key-2023';
 
 export const processImage = createAsyncThunk(
   'ingredients/processImage',
@@ -10,11 +9,16 @@ export const processImage = createAsyncThunk(
     const formData = new FormData();
     formData.append('file', file);
 
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Content-Type': 'multipart/form-data'
+    };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
     const response = await axios.post(`${API_BASE_URL}/process-image`, formData, {
-      headers: {
-        'X-API-Key': API_KEY,
-        'Content-Type': 'multipart/form-data'
-      }
+      headers
     });
     return response.data;
   }
@@ -23,10 +27,18 @@ export const processImage = createAsyncThunk(
 export const findRecipes = createAsyncThunk(
   'ingredients/findRecipes',
   async (ingredients) => {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
     const response = await axios.post(`${API_BASE_URL}/find-recipes`,
       { ingredients },
       {
-        headers: { 'X-API-Key': API_KEY, 'Content-Type': 'application/json' }
+        headers
       }
     );
     return response.data;

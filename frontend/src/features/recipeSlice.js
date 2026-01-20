@@ -2,14 +2,19 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const API_BASE_URL = '';
-const API_KEY = 'intelligent-recipe-generator-api-key-2023';
+
+// Helper to get auth headers
+const getAuthHeaders = () => {
+  const token = localStorage.getItem('token');
+  return token ? { 'Authorization': `Bearer ${token}` } : {};
+};
 
 // Async thunks for API calls
 export const fetchRecipes = createAsyncThunk(
   'recipes/fetchRecipes',
   async (params = {}) => {
     const response = await axios.get(`${API_BASE_URL}/get-all-recipes`, {
-      headers: { 'X-API-Key': API_KEY }
+      headers: getAuthHeaders()
     });
     return response.data;
   }
@@ -19,7 +24,10 @@ export const searchRecipes = createAsyncThunk(
   'recipes/searchRecipes',
   async (searchParams) => {
     const response = await axios.post(`${API_BASE_URL}/search-recipes`, searchParams, {
-      headers: { 'X-API-Key': API_KEY, 'Content-Type': 'application/json' }
+      headers: { 
+        'Content-Type': 'application/json',
+        ...getAuthHeaders()
+      }
     });
     return response.data;
   }
@@ -31,7 +39,10 @@ export const generateRecipe = createAsyncThunk(
     const response = await axios.post(`${API_BASE_URL}/generate-recipe`,
       { ingredients, cuisine },
       {
-        headers: { 'X-API-Key': API_KEY, 'Content-Type': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          ...getAuthHeaders()
+        }
       }
     );
     return response.data;
@@ -44,7 +55,10 @@ export const generateRecipeSuggestions = createAsyncThunk(
     const response = await axios.post(`${API_BASE_URL}/generate-recipe-suggestions`, 
       { ingredients, num_recipes }, 
       {
-        headers: { 'X-API-Key': API_KEY, 'Content-Type': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          ...getAuthHeaders()
+        }
       }
     );
     return response.data;
@@ -57,7 +71,10 @@ export const generateInstructions = createAsyncThunk(
     const response = await axios.post(`${API_BASE_URL}/generate-instructions`, 
       recipeData, 
       {
-        headers: { 'X-API-Key': API_KEY, 'Content-Type': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          ...getAuthHeaders()
+        }
       }
     );
     return response.data;

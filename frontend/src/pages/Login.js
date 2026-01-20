@@ -46,8 +46,7 @@ const Login = () => {
       const response = await fetch(`${endpoint}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'X-API-Key': 'intelligent-recipe-generator-api-key-2023'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(requestData)
       });
